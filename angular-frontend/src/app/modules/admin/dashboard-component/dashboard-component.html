@@ -1,0 +1,127 @@
+<main class="mx-auto max-w-7xl px-4 py-10">
+
+  <!-- Título principal de la página -->
+  <h1 class="mb-6 text-2xl font-semibold text-slate-900">
+    Panel de administración
+  </h1>
+
+  <!-- Card: Crear usuario -->
+  <section class="rounded-lg border bg-white p-6 shadow-sm mb-6">
+
+    <!-- Solo título de la tarjeta -->
+    <h2 class="text-lg font-semibold text-slate-900 mb-4">Crear usuario</h2>
+
+    <!-- Formulario de creación -->
+    <form
+      (ngSubmit)="create()"
+      [formGroup]="form"
+      class="grid grid-cols-1 gap-4 md:grid-cols-12 md:items-end"
+    >
+      <div class="md:col-span-4">
+        <label class="block text-sm font-medium text-slate-700">Email</label>
+        <input
+          placeholder="email@empresa.com"
+          formControlName="email"
+          class="mt-1 w-full h-10 rounded border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
+             class="text-red-500 text-sm mt-1">
+          Email inválido
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <label class="block text-sm font-medium text-slate-700">Contraseña</label>
+        <input
+          placeholder="••••••••"
+          type="password"
+          formControlName="password"
+          class="mt-1 w-full h-10 rounded border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+             class="text-red-500 text-sm mt-1">
+          Contraseña inválida
+        </div>
+      </div>
+
+      <div class="md:col-span-3">
+        <label class="block text-sm font-medium text-slate-700">Nombre</label>
+        <input
+          placeholder="Nombre"
+          formControlName="nombre"
+          class="mt-1 w-full h-10 rounded border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        />
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-slate-700">Roles</label>
+        <select
+          formControlName="roles"
+          multiple
+          class="mt-1 w-full h-10 rounded border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          <option value="ROLE_USER">ROLE_USER</option>
+          <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+        </select>
+      </div>
+
+      <div class="md:col-span-12 flex justify-end">
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          class="inline-flex h-10 items-center rounded-md bg-primary px-5 text-sm font-medium text-white transition hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          Crear usuario
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Search -->
+  <div class="mb-4">
+    <input
+      placeholder="Buscar..."
+      [(ngModel)]="q"
+      (ngModelChange)="load()"
+      class="w-full h-10 rounded-md border px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary md:w-80"
+    />
+  </div>
+
+  <!-- Tabla usuarios -->
+  <div class="overflow-hidden rounded-lg border bg-white shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-slate-200">
+        <thead class="bg-slate-50">
+          <tr>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-slate-700">ID</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-slate-700">Email</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-slate-700">Roles</th>
+            <th class="px-4 py-2 text-left text-sm font-semibold text-slate-700">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 bg-white">
+          <tr *ngFor="let u of users" class="hover:bg-slate-50">
+            <td class="px-4 py-2 text-sm text-slate-700">{{ u.id }}</td>
+            <td class="px-4 py-2 text-sm text-slate-700">{{ u.email }}</td>
+            <td class="px-4 py-2 text-sm text-slate-700">{{ u.roles.join(', ') }}</td>
+            <td class="px-4 py-2 text-sm flex justify-end gap-2">
+              <button
+                type="button"
+                (click)="resetPassword(u.id)"
+                class="rounded h-10 px-3 text-sm text-white bg-primary hover:bg-primary-700"
+              >
+                Reset password
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Mensaje vacío -->
+      <div *ngIf="users.length === 0" class="text-center text-slate-500 py-8">
+        No hay usuarios aún.
+      </div>
+    </div>
+  </div>
+
+</main>

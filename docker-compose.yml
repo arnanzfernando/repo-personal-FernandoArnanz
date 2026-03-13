@@ -10,6 +10,7 @@ services:
       - ./symfony-backend:/var/www/app
     depends_on:
       db:
+
         condition: service_healthy
     ports:
       - "8000:8000"

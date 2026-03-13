@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenido a To-Do App</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color:#f5f7fa; margin:0; padding:40px 0;">
+
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="center">
+
+        <table width="640" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;border:1px solid #dde6f2;overflow:hidden">
+
+          <!-- HEADER con logo incrustado -->
+          <tr>
+            <td style="background:#2563eb;padding:20px;text-align:center;">
+              <img src="{{ asset('images/logomailer.png') }}" alt="To-Do App" width="120">
+            </td>
+          </tr>
+
+          <!-- BODY -->
+          <tr>
+            <td style="padding:24px">
+
+              <h1 style="color:#1f2937;margin-top:0;">
+                ¡Hola {{ usuario.nombre }}!
+              </h1>
+
+              <p style="color:#1f2937;line-height:1.5;">
+                Gracias por registrarte en <strong>To-Do App</strong>. A partir de ahora podrás organizar tus tareas
+                y compartirlas con tu equipo sin complicaciones.
+              </p>
+
+              <p style="color:#1f2937;line-height:1.5;">
+                Haz clic en el siguiente botón para acceder a tu panel e iniciar tu primera lista
+                de tareas.
+              </p>
+
+              <table cellpadding="0" cellspacing="0" style="margin-top:20px">
+                <tr>
+                  <td bgcolor="#2563eb" style="border-radius:6px;">
+                    <a href="{{ frontend_url|default('https://todo-app.local/login') }}"
+                       style="display:inline-block;padding:12px 20px;color:#ffffff;text-decoration:none;font-weight:bold;">
+                       Ir a To-Do App
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin-top:24px;color:#1f2937;">
+                Si no esperabas este correo, ignóralo. Puedes escribirnos respondiendo a este mensaje si necesitas ayuda.
+              </p>
+
+              <p style="margin-top:32px;color:#6b7280;">
+                El equipo de To-Do App
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="background:#f3f4f6;padding:15px;text-align:center;font-size:12px;color:#6b7280;">
+              © {{ "now"|date("Y") }} To-Do App · Todos los derechos reservados
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

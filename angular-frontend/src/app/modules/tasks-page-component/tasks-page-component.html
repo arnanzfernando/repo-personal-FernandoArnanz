@@ -1,0 +1,34 @@
+<main class="mx-auto min-h-screen max-w-7xl bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-24 sm:px-8 sm:py-32 lg:px-16">
+
+  <!-- Cabecera con título, botón volver y logout -->
+  <div class="flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:justify-between mb-8 w-full">
+    
+    <!-- Título -->
+    <app-page-title
+      class="w-full lg:w-auto text-gray-900 dark:text-gray-100"
+      title="Gestión de Tareas"
+      subtitle="Organiza y administra tus pendientes con un vistazo rápido."
+    ></app-page-title>
+
+    <div class="flex items-center gap-4">
+      <!-- Botón volver -->
+      <app-back-to-landing-button class="hidden lg:inline-flex"></app-back-to-landing-button>
+    </div>
+  </div>
+
+  <!-- Filtros de tareas -->
+  <div class="mb-6 bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
+    <app-task-filters (apply)="onFiltersApply($event)"></app-task-filters>
+  </div>
+
+  <!-- Formulario de tarea -->
+  <div class="mb-8 bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
+    <app-task-form-component (submitted)="onTaskSubmitted($event)"></app-task-form-component>
+  </div>
+
+  <!-- Lista de tareas -->
+  <section class="bg-gray-100 dark:bg-gray-800 p-4 rounded shadow">
+    <app-task-list></app-task-list>
+  </section>
+
+</main>

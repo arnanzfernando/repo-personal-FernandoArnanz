@@ -1,0 +1,49 @@
+<section class="mt-10">
+
+  <!-- Loading -->
+  <p *ngIf="loading$ | async" class="text-slate-500 dark:text-slate-400">
+    Cargando tareas…
+  </p>
+
+  <!-- Error -->
+  <p *ngIf="error$ | async as err" class="text-red-600 dark:text-red-400">
+    {{ err }}
+  </p>
+
+  <!-- Contenido -->
+  <ng-container *ngIf="tasks$ | async as tasks">
+    
+    <!-- Mensaje vacío -->
+    <p *ngIf="!tasks.length && !(loading$ | async)" class="text-slate-500 dark:text-slate-400">
+      No hay tareas.
+    </p>
+
+    <!-- Lista de tareas -->
+    <div *ngIf="tasks.length" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <article
+        *ngFor="let t of tasks"
+        class="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-gray-800 p-6 shadow-sm dark:shadow-md"
+      >
+        <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">
+          {{ t.titulo }}
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-300">
+          Estado:
+          <span
+            class="font-semibold capitalize"
+            [class.text-blue-600]="t.estado === 'en progreso'"
+            [class.text-emerald-600]="t.estado === 'completada'"
+            [class.text-amber-600]="t.estado === 'pendiente'"
+          >
+            {{ t.estado }}
+          </span>
+        </p>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Fecha límite: {{ t.fechaLimite || 'Sin fecha definida' }}
+        </p>
+      </article>
+    </div>
+
+  </ng-container>
+
+</section>

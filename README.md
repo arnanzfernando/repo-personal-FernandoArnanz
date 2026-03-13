@@ -1,5 +1,7 @@
 # Despliegue de una Aplicación Symfony + Angular
 
+- Nota: Este es un cambio atómico de prueba.
+
 Este repositorio combina un backend en Symfony, un frontend en Angular y una base de datos PostgreSQL. Puedes ejecutar todo con Docker o levantar cada parte de manera nativa en tu equipo. A continuación encontrarás una guía pensada para alumnos que aún no tienen nada instalado y quieren entender qué herramienta usar, cómo configurarla y por qué.
 
 > Importante · Trabaja siempre en una rama por ejercicio
